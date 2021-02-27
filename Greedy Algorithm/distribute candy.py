@@ -31,10 +31,24 @@ def candy(A):
     return sum(candies)
 
 
+def greedySol(A):
+    candies = [1 for i in range(len(A))]
+    for i in range(1, len(A)):
+        if A[i] > A[i-1]:
+            candies[i] = candies[i-1] + 1
+    
+    n = len(A)
+    for i in range(n-2, -1, -1):
+        if A[i] > A[i+1] and candies[i] <= candies[i+1]:
+            candies[i] = candies[i+1] + 1
+    
+    print(candies)
+    return sum(candies)
 
-A = [1]
+
+A = [1, 5, 2, 1]
 print(candy(A))
-
+print(greedySol(A))
 
 
 
