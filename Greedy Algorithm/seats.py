@@ -23,6 +23,25 @@ def seats(A):
     return int(ans)%MOD
 
 
+# with better understanding 
+def sol2(A):
+    index_arr = []
+    for i in range(len(A)):
+        if A[i] == 'x':
+            index_arr.append(i)
+    if len(index_arr) <= 1:
+        return 0
+    MOD = 10000003
+    mid = len(index_arr)//2
+    center_pos = index_arr[mid]
+    ans = 0
+    for i in range(len(index_arr)):
+        start_ind = index_arr[i]
+        end_ind = center_pos - mid + i
+        ans += abs(start_ind - end_ind)%MOD
+    return ans%MOD
 
-A = "...xx..x.xx"
+
+A = "...xx.."
 print(seats(A))
+print(sol2(A))
