@@ -5,6 +5,36 @@ class TreeNode:
         self.right = None
 
 
+from collections import deque
+def bfs(root):
+    ans = []
+    que = deque()
+    if not root:
+        return ans
+    
+    ans.append([root.val])
+
+    if root.left:
+        que.append(root.left)
+    if root.right:
+        que.append(root.right)
+
+    while len(que) > 0:
+        curr_level = []
+        temp_que = deque()
+        while len(que) > 0:
+            popped = que.popleft()
+            curr_level.append(popped.val)
+            if popped.left:
+                temp_que.append(popped.left)
+            if popped.right:
+                temp_que.append(popped.right)
+        
+        que = temp_que
+        ans.append(curr_level)
+    return ans
+
+
 
 def levelOrder_labelled(root):
     def heightOfTree(root):
